@@ -1,0 +1,17 @@
+th, td{
+    padding-left:20px;
+    padding-right:20px;
+    background-color:lightgray;
+}
+
+td {
+    background-color: white;
+}
+.pagination {
+    margin:20px;
+}
+
+.pageNumber {
+    padding-left:20px;
+    padding-right:20px;
+}

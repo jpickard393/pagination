@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React, { useEffect, useState, useMemo } from "react";
+import axios from "axios";
+import Table from "./Components/Table/Table";
+import './App.css'
+
+const App = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchToDoData = async () => {
+      const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
+      setData(response.data);
+    };
+
+    fetchToDoData();
+  }, []);
+
+  // const columns = [
+  // {
+  //   Header: "User",
+  //   accessor: "userId",
+  // },
+  // {
+  //   Header: "Id",
+  //   accessor: "id",
+  // },
+  // {
+  //   Header: "Title",
+  //   accessor: "title",
+  // },
+  // {
+  //   Header: "Completed",
+  //   accessor: "completed",
+  // }];
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "User",
+        accessor: "userId",
+      },
+      {
+        Header: "Id",
+        accessor: "id",
+      },
+      {
+        Header: "Title",
+        accessor: "title",
+      },
+      {
+        Header: "Completed",
+        accessor: "completed",
+      },
+    ],
+    []
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>ToDo List</h1>
+      <Table columns={columns} data={data} />
     </div>
   );
-}
+};
 
 export default App;
