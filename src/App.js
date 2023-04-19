@@ -7,42 +7,26 @@ import './App.css'
 const App = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchToDoData = async () => {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
-      setData(response.data);
-    };
+  const fetchToDoData = async () => {
+    const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
+    setData(response.data);
+  };
 
+  useEffect(() => {
     fetchToDoData();
   }, []);
 
-  // const columns = [
-  // {
-  //   Header: "User",
-  //   accessor: "userId",
-  // },
-  // {
-  //   Header: "Id",
-  //   accessor: "id",
-  // },
-  // {
-  //   Header: "Title",
-  //   accessor: "title",
-  // },
-  // {
-  //   Header: "Completed",
-  //   accessor: "completed",
-  // }];
-
-  const columns = useMemo(
+  // useMemo stops header being re rendered every time.
+  // access or is the field name of teh record
+  const columnNames = useMemo(
     () => [
-      {
-        Header: "User",
-        accessor: "userId",
-      },
       {
         Header: "Id",
         accessor: "id",
+      },
+      {
+        Header: "User",
+        accessor: "userId",
       },
       {
         Header: "Title",
@@ -59,7 +43,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>ToDo List</h1>
-      <Table columns={columns} data={data} />
+      <Table columns={columnNames} data={data} />
     </div>
   );
 };

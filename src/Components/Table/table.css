@@ -1,11 +1,23 @@
+table {
+    border:1px solid silver;
+}
+th {
+    padding-top:10px;
+    padding-bottom:10px;
+    color: white;
+    font-size: large;
+}
 th, td{
     padding-left:20px;
     padding-right:20px;
-    background-color:lightgray;
+    background-color:cornflowerblue;
+    
 }
 
 td {
     background-color: white;
+    border-right:0.5px solid silver;
+    color: black;
 }
 .pagination {
     margin:20px;
@@ -14,4 +26,9 @@ td {
 .pageNumber {
     padding-left:20px;
     padding-right:20px;
+}
+
+.tableRow{
+    border-bottom: 0.5px solid silver;
+    
 }

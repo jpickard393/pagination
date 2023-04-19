@@ -1,6 +1,7 @@
 import { useTable, usePagination } from "react-table";
 import "./table.css";
 
+const recordLimit = 100;
 const Table = ({ columns, data }) => {
   const {
     getTableProps,
@@ -14,7 +15,7 @@ const Table = ({ columns, data }) => {
     previousPage,
     state: { pageIndex },
   } = useTable(
-    { columns, data, initialState: { pageIndex: 0 } },
+    { columns, data, initialState: { pageIndex: 0, pageSize: recordLimit } },
     usePagination
   );
 
@@ -37,7 +38,9 @@ const Table = ({ columns, data }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td className="tableRow" {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </td>
                   );
                 })}
               </tr>

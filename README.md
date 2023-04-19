@@ -2,6 +2,21 @@
 # https://blog.logrocket.com/react-table-complete-guide/
 
 
+Ideas to improve performance
+Server-side pagination
+ Instead of fetching all the data all at once and then doing paginating on the client-side, request only a set number of records from the API. This will reduce the data fetched and processed by the client, improving performance.
+
+eg. ?page=${page}&limit=10
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
