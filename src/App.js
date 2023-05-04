@@ -1,18 +1,20 @@
 
 import React, { useEffect, useState } from "react";
 import {FixedSizeList as List} from "react-window";
+import Row from "./Components/row";
 import './App.css'
 
 const App = () => {
   const [data, setData] = useState([]);
+  const maxRows = 10000;
 
   const generateData = () =>{
     const newTasks = [];
-    for(let i = 0; i <10000; i++){
+    for(let i = 0; i <maxRows; i++){
       const newTask = {
         id:i,
-        userId:'userId' + i,
-        title: 'Item ' + i,
+        userId:'User ' + i,
+        title: 'Task Item ' + i,
         completed:false
       }
       newTasks.push(newTask);
@@ -36,17 +38,15 @@ const App = () => {
       <button onClick={reverse}>Reverse</button>
       </div>
         <List innerElementType="ul"
+        useIsScrolling={true}
         itemCount={data.length}
-        itemSize={20}
-        height={700}
-        width={400}>
+        itemSize={25}
+        height={500}
+        width={1000}>
           {({index, style }) => {
           return (
             <li style={style}>
-              <span className="column">{data[index].id}</span>
-              <span className="column">{data[index].userId}</span>
-              <span className="column">{data[index].title}</span>
-              <span className="column">{data[index].complete ? "Yes" : "No"}</span>
+              <Row item={data[index]}></Row>
             </li>
           );
         }}

@@ -1,0 +1,21 @@
+.container {
+    display:flex;
+}
+
+.idColumn {
+    width:100px;
+    color:rgb(26, 55, 110);
+    text-align: left;
+  }
+
+.userIdColumn {
+    width:150px;
+    color:rgb(26, 55, 110);
+    text-align: left;
+  }
+
+.titleColumn {
+    width:200px;
+    color:rgb(26, 55, 110);
+    text-align: left;
+  }
