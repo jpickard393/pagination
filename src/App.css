@@ -5,3 +5,12 @@
 h1 {
   margin-left:20%;
 }
+
+.column {
+  margin-right:20px;
+  text-align: left;
+}
+
+.buttonContainer {
+  margin:10px;
+}

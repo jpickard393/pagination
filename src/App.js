@@ -8,7 +8,7 @@ const App = () => {
 
   const generateData = () =>{
     const newTasks = [];
-    for(let i = 0; i <1000; i++){
+    for(let i = 0; i <10000; i++){
       const newTask = {
         id:i,
         userId:'userId' + i,
@@ -32,7 +32,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>ToDo List</h1>
-      <div>
+      <div className="buttonContainer">
       <button onClick={reverse}>Reverse</button>
       </div>
         <List innerElementType="ul"
@@ -43,8 +43,10 @@ const App = () => {
           {({index, style }) => {
           return (
             <li style={style}>
-              {data[index].id}
-              {data[index].title}
+              <span className="column">{data[index].id}</span>
+              <span className="column">{data[index].userId}</span>
+              <span className="column">{data[index].title}</span>
+              <span className="column">{data[index].complete ? "Yes" : "No"}</span>
             </li>
           );
         }}
