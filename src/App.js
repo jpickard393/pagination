@@ -1,49 +1,54 @@
 
-import React, { useEffect, useState, useMemo } from "react";
-import axios from "axios";
-import Table from "./Components/Table/Table";
+import React, { useEffect, useState } from "react";
+import {FixedSizeList as List} from "react-window";
 import './App.css'
 
 const App = () => {
   const [data, setData] = useState([]);
 
-  const fetchToDoData = async () => {
-    const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
-    setData(response.data);
+  const generateData = () =>{
+    const newTasks = [];
+    for(let i = 0; i <1000; i++){
+      const newTask = {
+        id:i,
+        userId:'userId' + i,
+        title: 'Item ' + i,
+        completed:false
+      }
+      newTasks.push(newTask);
+    }
+
+    setData(newTasks);
+  }
+
+  const reverse = () => {
+    setData((data) => data.slice().reverse());
   };
-
+  
   useEffect(() => {
-    fetchToDoData();
+    generateData();
   }, []);
-
-  // useMemo stops header being re rendered every time.
-  // access or is the field name of teh record
-  const columnNames = useMemo(
-    () => [
-      {
-        Header: "Id",
-        accessor: "id",
-      },
-      {
-        Header: "User",
-        accessor: "userId",
-      },
-      {
-        Header: "Title",
-        accessor: "title",
-      },
-      {
-        Header: "Completed",
-        accessor: "completed",
-      },
-    ],
-    []
-  );
-
+  
   return (
     <div className="App">
       <h1>ToDo List</h1>
-      <Table columns={columnNames} data={data} />
+      <div>
+      <button onClick={reverse}>Reverse</button>
+      </div>
+        <List innerElementType="ul"
+        itemCount={data.length}
+        itemSize={20}
+        height={700}
+        width={400}>
+          {({index, style }) => {
+          return (
+            <li style={style}>
+              {data[index].id}
+              {data[index].title}
+            </li>
+          );
+        }}
+        </List>
     </div>
   );
 };
