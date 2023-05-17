@@ -6,13 +6,20 @@ import './App.css'
 
 const App = () => {
   const [data, setData] = useState([]);
+  const myAPIPath = "https://localhost:7177/ToDo";
+  //const myAPIPath = "https://jsonplaceholder.typicode.com/todos";
 
   const fetchToDoData = async () => {
-    const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
-    setData(response.data);
+    await axios.get(myAPIPath).then(result =>
+    {
+       setData(result.data);      
+    }).catch((error) => {
+      console.log(error);
+    });
   };
 
   useEffect(() => {
+    console.log("useEffect");
     fetchToDoData();
   }, []);
 

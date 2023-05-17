@@ -1,7 +1,7 @@
 import { useTable, usePagination } from "react-table";
 import "./table.css";
 
-const recordLimit = 100;
+const recordLimit = 1000;
 const Table = ({ columns, data }) => {
   const {
     getTableProps,
